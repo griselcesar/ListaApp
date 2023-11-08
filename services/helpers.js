@@ -23,5 +23,5 @@ export const itemFormatter = (item) => {
 };
 
 export const noFound = () => {
-  return res.status(404).json({ message: "producto no encontrado" });
+  return { message: "producto no encontrado" };
 };
