@@ -1,6 +1,7 @@
 import {
   getAllProducts,
   getOneProductById,
+  createOneProduct,
 } from "../services/products.services.js";
 
 import { itemFormatter, listFormatter, noFound } from "../services/helpers.js";
@@ -17,9 +18,21 @@ export const getAllProductsController = async (req, res) => {
 export const getOneProductByIdController = async (req, res) => {
   let { id } = req.params;
   let product = await getOneProductById(id);
-  if (!product) return res.status(404).json(noFound())
+  if (!product) return res.status(404).json(noFound());
   return res.status(200).json({
     message: `detalles de ${product.code}`,
     product: itemFormatter(product),
   });
+};
+
+export const createOneProductController = async (req, res) => {
+  let { newProduct } = req;
+  let product = await createOneProduct(newProduct);
+  if (!product) return res.status(404).json(noFound());
+  return res
+    .status(201)
+    .json({
+      message: "producto creado correctamente",
+      product: itemFormatter(product),
+    });
 };
