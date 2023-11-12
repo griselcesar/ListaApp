@@ -3,6 +3,7 @@ import {
   getAllProductsController,
   getOneProductByIdController,
   createOneProductController,
+  deleteOneProductByIdController,
 } from "../controllers/products.controller.js";
 
 import { createProductDTO } from "../validators/products.validator.js";
@@ -13,6 +14,9 @@ productsRoutes
   .route("/")
   .get(getAllProductsController)
   .post(createProductDTO, createOneProductController);
-productsRoutes.route("/:id").get(getOneProductByIdController);
+productsRoutes
+  .route("/:id")
+  .get(getOneProductByIdController)
+  .delete(deleteOneProductByIdController);
 
 export default productsRoutes;
